@@ -1,8 +1,26 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var dtheta = 0.01;
-x = canvas.width / 2;
-y = canvas.height / 2;
+x = window.innerWidth / 2;
+y = window.innerHeight / 2;
+
+function setCanvas() {
+    ctx.canvas.width = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
+    x = window.innerWidth / 2;
+    y = window.innerHeight / 2;
+    // ctx.translate(width / 2, height / 2); // now 0,0 is the center of the canvas.
+}
+
+function resizeCanvas() {
+    var width = document.documentElement.clientWidth;
+    var height = document.documentElement.clientHeight;
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
+    ctx.translate(width / 2, height / 2); // now 0,0 is the center of the canvas.
+}
+
+// window.addEventListener('resize', resizeCanvas, false);
 
 class Planet {
     constructor(orbitHeight, theta, dtheta, radius, color) {
@@ -44,6 +62,7 @@ function drawPlanet(x1, y1, r1, color1) {
 }
 
 function draw() {
+    setCanvas()
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawSun();
     earth.theta += earth.dtheta;
