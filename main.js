@@ -27,10 +27,19 @@ class Planet {
     }
 }
 
-var earth = new Planet(100, 0, -0.01, 10, 'blue');
-var mars = new Planet(250, 0, -0.08, 7, 'red');
+var earth = new Planet(100, 0, -0.001, 10, 'blue');
+var mars = new Planet(250, 0, -0.0015, 7, 'red');
+var jupiter = new Planet(380, 0, -0.0002, 18, 'orange')
 
 // console.log(earth.theta);
+function drawSun() {
+    ctx.beginPath();
+    ctx.arc(x, y, 45, 0, Math.PI * 2);
+    ctx.fillStyle = 'yellow';
+    ctx.fill();
+    ctx.closePath();
+}
+
 
 function drawBall(x1, y1, r1, color1) {
     ctx.beginPath();
@@ -42,11 +51,13 @@ function drawBall(x1, y1, r1, color1) {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawSun();
     earth.theta += earth.dtheta;
     mars.theta += mars.dtheta;
+    jupiter.theta += jupiter.dtheta;
     drawBall(earth.calcPos()[0], earth.calcPos()[1], earth.radius, earth.color);
     drawBall(mars.calcPos()[0], mars.calcPos()[1], mars.radius, mars.color);
-
+    drawBall(jupiter.calcPos()[0], jupiter.calcPos()[1], jupiter.radius, jupiter.color);
 }
 
 setInterval(draw, 10);
