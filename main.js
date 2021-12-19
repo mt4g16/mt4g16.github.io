@@ -11,7 +11,7 @@ y = canvas.height / 2;
 // var ballColor = 'red';
 
 class Planet {
-    constructor(orbitHeight, theta, radius, color) {
+    constructor(orbitHeight, theta, dtheta, radius, color) {
         this.orbitHeight = orbitHeight;
         this.theta = theta;
         this.dtheta = dtheta;
@@ -27,23 +27,26 @@ class Planet {
     }
 }
 
-var earth = new Planet(100, 0, 10, 'blue');
+var earth = new Planet(100, 0, 0.01, 10, 'blue');
+var mars = new Planet(250, 0, 0.01, 7, 'red');
 
-console.log(earth.theta);
+// console.log(earth.theta);
 
-function drawBall() {
+function drawBall(x1, y1, r1, color1) {
     ctx.beginPath();
-    ctx.arc(earth.calcPos()[0], earth.calcPos()[0], earth.radius, 0, Math.PI * 2);
-    ctx.fillStyle = earth.color;
+    ctx.arc(x1, y1, r1, 0, Math.PI * 2);
+    ctx.fillStyle = color1;
     ctx.fill();
     ctx.closePath();
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    earth.theta += dtheta;
-    console.log(earth.theta);
-    drawBall();
+    earth.theta += earth.dtheta;
+    mars.theta += mars.dtheta;
+    drawBall(earth.calcPos()[0], earth.calcPos()[1], earth.radius, earth.color);
+    drawBall(mars.calcPos()[0], mars.calcPos()[1], mars.radius, mars.color);
+
 }
 
 setInterval(draw, 10);
