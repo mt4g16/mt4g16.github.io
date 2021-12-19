@@ -27,8 +27,8 @@ class Planet {
     }
 }
 
-var earth = new Planet(100, 0, 0.01, 10, 'blue');
-var mars = new Planet(250, 0, 0.01, 7, 'red');
+var earth = new Planet(100, 0, -0.01, 10, 'blue');
+var mars = new Planet(250, 0, -0.08, 7, 'red');
 
 // console.log(earth.theta);
 
