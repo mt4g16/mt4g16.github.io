@@ -1,1 +1,5 @@
-body {background-color: coral;}
+html, body {
+    overflow: hidden;
+}
+
+canvas { background: #eee; }
